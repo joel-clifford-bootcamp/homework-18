@@ -1,3 +1,5 @@
+import { checkForIndexedDb, useIndexedDb } from "./indexedDb";
+
 let transactions = [];
 let myChart;
 
@@ -12,6 +14,12 @@ fetch("/api/transaction")
     populateTotal();
     populateTable();
     populateChart();
+  })
+  .catch(err => {
+
+    console.log(err);
+    // if (checkForIndexedDb()) {
+    //   useIndexedDb("articles", "ArticleStore", "get").then(results => {
   });
 
 function populateTotal() {
@@ -136,7 +144,8 @@ function sendTransaction(isAdding) {
   })
   .catch(err => {
     // fetch failed, so save in indexed db
-    saveRecord(transaction);
+    // saveRecord(transaction);
+    useIndexedDb("transactions", "ArticleStore", "POST", transaction);
 
     // clear form
     nameEl.value = "";
