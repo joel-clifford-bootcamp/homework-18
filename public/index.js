@@ -1,4 +1,4 @@
-import { checkForIndexedDb, useIndexedDb } from "./indexedDb";
+import { saveRecord } from "./indexedDb";
 
 let transactions = [];
 let myChart;
